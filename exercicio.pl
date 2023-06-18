@@ -13,23 +13,23 @@ pos(chave, garagem).
 pos(robo, garagem).
 
 ande(Destino) :-retract(pos(robo, Origem)),
-		        asserta(pos(robo, Destino)),
-		        format('Robo, ande de ~w ate ~w', [Origem, Destino]).
+		asserta(pos(robo, Destino)),
+		format('Robo, ande de ~w ate ~w', [Origem, Destino]).
 
 onde :- pos(robo, X), 
-	    format('O robo esta na ~w', [X]).
+	format('O robo esta na ~w', [X]).
 
 objetos :- pos(robo, X),
-	       pos(Y, X), 
-	       Y \= robo, 
-	       format('~w ', [Y]).
+	   pos(Y, X), 
+	   Y \= robo, 
+	   format('~w ', [Y]).
 
 pegue(Objeto) :- pos(robo, Local),
-				 pos(Objeto, Local),
+		 pos(Objeto, Local),
                  Objeto \= robo,
-				 retract(pos(Objeto, Local)),
-				 asserta(pos(Objeto, mochila)),
-				 format('O robô colocou a ~w na mochila.', [Objeto]).
+		 retract(pos(Objeto, Local)),
+		 asserta(pos(Objeto, mochila)),
+		 format('O robô colocou a ~w na mochila.', [Objeto]).
 
 mochila :- findall(X, pos(X, mochila), Obj),
            format('Objetos na mochila: ~w', [Obj]).

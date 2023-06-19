@@ -1,10 +1,4 @@
 :- dynamic pos/2.
-:- dynamic ande/1. 
-:- dynamic onde/0.
-:- dynamic objetos/0.
-:- dynamic pegue/1.
-:- dynamic mochila/0.
-
 
 pos(tv, sala).
 pos(bola, quarto).
@@ -35,7 +29,7 @@ mochila :- findall(X, pos(X, mochila), Obj),
            format('Objetos na mochila: ~w', [Obj]).
 
 solte(Objeto) :- pos(robo, Local),
-    			 pos(Objeto, mochila),
-    	 	 	 retract(pos(Objeto, mochila)),
+    		 pos(Objeto, mochila),
+    	 	 retract(pos(Objeto, mochila)),
     			 asserta(pos(Objeto, Local)),
     			 format('O robô soltou a ~w na ~w.', [Objeto, Local]).
